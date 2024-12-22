@@ -1,4 +1,4 @@
-all: code sort help
+all: code sort
 
 code: code.o consumer.o rotation.o insertion.o tools.o
 	gcc -o code code.o consumer.o rotation.o insertion.o tools.o
@@ -36,11 +36,5 @@ insertion_sort.o: insertion_sort.c insertion_sort.h rotation_sort.h consumer_sor
 tools_sort.o: tools_sort.c tools_sort.h
 	gcc -o tools_sort.o -c tools_sort.c
 
-help: help.o
-	gcc -o help help.o
-
-help.o: help.c
-	gcc -o help.o -c help.c
-
 clean:
-	rm -f *.o code sort help
+	rm -f *.o code sort
