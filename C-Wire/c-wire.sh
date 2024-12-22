@@ -8,6 +8,14 @@ centralid="$4"
 help="$5"
 time=0
 
+#Search for help option
+for i in "$@"; do
+    if [ "$i" = "-h" ]; then
+        $PWD/CodeC/help
+        exit 7
+    fi
+done
+
 #Verification of files and folders existences
 if [ -d "CodeC" ]; then
     echo "Le dossier CodeC est présent."
@@ -73,15 +81,6 @@ make -C CodeC
 #Remove .o files
 rm $PWD/CodeC/*.o
 
-#Search for help option
-for i in "$@"; do
-    if [ "$i" = "-h" ]; then
-        $PWD/CodeC/help
-        exit 7
-    fi
-done
-
-
 
 
 if [ -n "$centralid" ]; then                        #Search for central option
@@ -146,7 +145,7 @@ if [ -n "$centralid" ]; then                        #Search for central option
             (echo "$(head -n 1 $PWD/tests/lv_all_"$centralid".csv)"; tail -n +2 $PWD/tests/lv_all_"$centralid".csv | sort -t ':' -k3,3nr) > $PWD/tests/lv_all_"$centralid".tmp && mv $PWD/tests/lv_all_"$centralid".tmp $PWD/tests/lv_all_"$centralid".csv #Sort the output file
             tail -n +2 $PWD/tests/lv_all_"$centralid".csv | $PWD/CodeC/sort > $PWD/tests/lv_all_tmp_"$centralid".csv        #Send to sort.c to be sorted by (capacity-load) and stored in temporary file
             echo "Min and Max 'capacity-load' extreme nodes" > $PWD/tests/lv_all_minmax_"$centralid".csv                    #Creation of minmax output file
-            echo "Station LV:Capacité:Consommation (tous)" > $PWD/tests/lv_all_minmax_"$centralid".csv                      #Add a header in minmax output file
+            echo "Station LV:Capacité:Consommation (tous)" >> $PWD/tests/lv_all_minmax_"$centralid".csv                      #Add a header in minmax output file
             tail -n +3 $PWD/tests/lv_all_tmp_"$centralid".csv | head -10 >> $PWD/tests/lv_all_minmax_"$centralid".csv       #Keep only first 10 biggest overcharged stations to minmax output file
             tail -n +2 $PWD/tests/lv_all_tmp_"$centralid".csv | tail -10 >> $PWD/tests/lv_all_minmax_"$centralid".csv       #Keep only last 10 lowest overcharged stations to minmax output file
             rm $PWD/tests/lv_all_tmp_"$centralid".csv                                                                       #Remove temporary file
