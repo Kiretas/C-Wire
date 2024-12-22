@@ -21,7 +21,7 @@ if [ -d "CodeC" ]; then
     echo "Le dossier CodeC est présent."
 else                                                                        #If verification fails exit and print help option
     echo "Le dossier CodeC devant contenir les programmes C n'existe pas."
-    ./help
+    $PWD/CodeC/help
     exit 1
 fi
 
@@ -29,7 +29,7 @@ if [ -d "graphs" ]; then
     echo "Le dossier graphs est présent."
 else                                                                        #If verification fails exit and print help option
     echo "Le dossier graphs devant contenir les graphiques générés n'existe pas."
-    ./help
+    $PWD/CodeC/help
     exit 2
 fi
 
@@ -37,7 +37,7 @@ if [ -d "tests" ]; then
     echo "Le dossier tests est présent."
 else                                                                        #If verification fails exit and print help option
     echo "Le dossier tests devant contenir les résultats n'existe pas."
-    ./help
+    $PWD/CodeC/help
     exit 3
 fi
 
@@ -52,7 +52,7 @@ for fileC in "${filesC[@]}"; do
         echo "Le fichier $fileC existe."
     else                                                                    #If verification fails exit and print help option
         echo "Le fichier $fileC n'existe pas. Entrez le chemin du fichier .dat complet."
-        ./help
+        $PWD/CodeC/help
         exit 4
     fi
 done
@@ -61,7 +61,7 @@ if [ -f "$file" ]; then
     echo "Le fichier "$file" existe."
 else                                                                        #If verification fails exit and print help option
     echo "Le fichier "$file" n'existe pas. Entrez le chemin du fichier .dat complet."
-    ./help
+    $PWD/CodeC/help
     exit 5
 fi
 
@@ -69,7 +69,7 @@ if [ -f "script.gnuplot" ]; then
     echo "Le fichier script.gnuplot existe."
 else                                                                        #If verification fails exit and print help option
     echo "Le fichier script.gnuplot n'existe pas. Entrez le chemin du fichier .dat complet."
-    ./help
+    $PWD/CodeC/help
     exit 6
 fi
 
