@@ -1,2 +1,0 @@
-# C-Wire
-School project
